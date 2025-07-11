@@ -2,7 +2,7 @@ class ShadowCloneJutsu < Formula
   desc "Git Worktree management tool with Claude Code integration"
   homepage "https://github.com/hashiramaendure/shadow-clone-jutsu"
   url "https://registry.npmjs.org/shadow-clone-jutsu/-/shadow-clone-jutsu-0.1.0.tgz"
-  sha256 "PLACEHOLDER_SHA256" # TODO: Update with actual SHA256 after npm publish
+  sha256 "3af9b0f36e28092d599e04c3fa3aacce3c8e21a814af6e3deb06db703c4e1193"
   license "MIT"
 
   depends_on "node"
