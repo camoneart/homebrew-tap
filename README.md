@@ -6,23 +6,23 @@ This tap contains formulae for tools developed by hashiramaendure.
 
 ```bash
 brew tap hashiramaendure/tap
-brew install shadow-clone-jutsu
+brew install maestro
 ```
 
 Or install via URL (which will not receive updates):
 
 ```bash
-brew install https://raw.githubusercontent.com/hashiramaendure/homebrew-tap/main/Formula/shadow-clone-jutsu.rb
+brew install https://raw.githubusercontent.com/hashiramaendure/homebrew-tap/main/Formula/maestro.rb
 ```
 
 ## Available Formulae
 
-### shadow-clone-jutsu
+### maestro
 
-Git Worktree management tool with Claude Code integration.
+Orchestrate parallel development with Git Worktrees - supercharge your workflow with Claude Code integration.
 
 ```bash
-brew install hashiramaendure/tap/shadow-clone-jutsu
+brew install hashiramaendure/tap/maestro
 ```
 
 ## Documentation
