@@ -1,0 +1,104 @@
+#!/bin/bash
+# maestro bash completion
+
+_maestro_completions() {
+    local cur prev opts base
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD - 1]}"
+    
+    # コマンド一覧
+    local commands="create list delete shell exec attach github config mcp completion tmux where"
+    local aliases="ls rm sh e a gh t w"
+    
+    # 最初の引数の場合
+    if [[ ${COMP_CWORD} -eq 1 ]]; then
+        COMPREPLY=( $(compgen -W "${commands} ${aliases}" -- ${cur}) )
+        return 0
+    fi
+    
+    # サブコマンドごとの補完
+    case "${COMP_WORDS[1]}" in
+        create)
+            # ブランチ名の補完（既存のローカルブランチを提案）
+            if [[ ${COMP_CWORD} -eq 2 ]]; then
+                local branches=$(git branch 2>/dev/null | grep -v "^*" | sed 's/^ *//')
+                COMPREPLY=( $(compgen -W "${branches}" -- ${cur}) )
+            fi
+            ;;
+        shell|sh|exec|e|delete|rm)
+            # worktreeのブランチ名を補完
+            if [[ ${COMP_CWORD} -eq 2 ]]; then
+                local worktrees=$(git worktree list --porcelain 2>/dev/null | grep "^branch" | sed 's/^branch refs\/heads\///')
+                COMPREPLY=( $(compgen -W "${worktrees}" -- ${cur}) )
+            fi
+            ;;
+        github|gh)
+            if [[ ${COMP_CWORD} -eq 2 ]]; then
+                COMPREPLY=( $(compgen -W "checkout pr issue" -- ${cur}) )
+            fi
+            ;;
+        config)
+            if [[ ${COMP_CWORD} -eq 2 ]]; then
+                COMPREPLY=( $(compgen -W "init show path" -- ${cur}) )
+            fi
+            ;;
+        mcp)
+            if [[ ${COMP_CWORD} -eq 2 ]]; then
+                COMPREPLY=( $(compgen -W "serve" -- ${cur}) )
+            fi
+            ;;
+        completion)
+            if [[ ${COMP_CWORD} -eq 2 ]]; then
+                COMPREPLY=( $(compgen -W "bash zsh fish" -- ${cur}) )
+            fi
+            ;;
+        tmux|t)
+            # worktreeのブランチ名を補完
+            if [[ ${COMP_CWORD} -eq 2 ]]; then
+                local worktrees=$(git worktree list --porcelain 2>/dev/null | grep "^branch" | sed 's/^branch refs\/heads\///')
+                COMPREPLY=( $(compgen -W "${worktrees}" -- ${cur}) )
+            fi
+            ;;
+        where|w)
+            # worktreeのブランチ名を補完
+            if [[ ${COMP_CWORD} -eq 2 ]]; then
+                local worktrees=$(git worktree list --porcelain 2>/dev/null | grep "^branch" | sed 's/^branch refs\/heads\///')
+                COMPREPLY=( $(compgen -W "${worktrees}" -- ${cur}) )
+            fi
+            ;;
+    esac
+    
+    # オプションの補完
+    if [[ "${cur}" == -* ]]; then
+        case "${COMP_WORDS[1]}" in
+            create)
+                opts="--base --open --setup --help"
+                ;;
+            delete|rm)
+                opts="--force --remove-remote --help"
+                ;;
+            exec|e)
+                opts="--silent --all --help"
+                ;;
+            github|gh)
+                opts="--open --setup --help"
+                ;;
+            tmux|t)
+                opts="--new-window --split-pane --vertical --help"
+                ;;
+            where|w)
+                opts="--fzf --current --help"
+                ;;
+            list|ls)
+                opts="--json --fzf --filter --sort --last-commit --help"
+                ;;
+            *)
+                opts="--help"
+                ;;
+        esac
+        COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+    fi
+}
+
+complete -F _maestro_completions maestro

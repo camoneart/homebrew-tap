@@ -10,6 +10,11 @@ class Maestro < Formula
   def install
     system "npm", "install", *std_npm_args
     bin.install_symlink Dir["#{libexec}/bin/*"]
+    
+    # Install shell completions
+    bash_completion.install "completion/bash/mst"
+    zsh_completion.install "completion/zsh/_mst"
+    fish_completion.install "completion/fish/mst.fish"
   end
 
   test do

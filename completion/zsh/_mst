@@ -1,0 +1,118 @@
+#compdef maestro
+# maestro zsh completion
+
+_maestro() {
+    local -a commands
+    commands=(
+        'create:新しい演奏者（worktree）を招集する'
+        'list:オーケストラ編成（worktree）の一覧を表示'
+        'delete:演奏者（worktree）を解散'
+        'shell:演奏者のシェルに入る'
+        'exec:演奏者でコマンドを実行'
+        'attach:既存のブランチから演奏者を招集する'
+        'github:GitHub PR/Issueから演奏者を招集する'
+        'config:設定を管理'
+        'mcp:MCPサーバーを起動'
+        'completion:シェル補完スクリプトを生成'
+        'tmux:tmux/fzfで演奏者を選択して開く'
+        'where:演奏者のパスを表示'
+    )
+    
+    local -a aliases
+    aliases=(
+        'ls:list'
+        'rm:delete'
+        'sh:shell'
+        'e:exec'
+        'a:attach'
+        'gh:github'
+        't:tmux'
+        'w:where'
+    )
+    
+    if (( CURRENT == 2 )); then
+        _describe -t commands 'maestro commands' commands
+        _describe -t aliases 'maestro aliases' aliases
+        return
+    fi
+    
+    case "${words[2]}" in
+        create)
+            if (( CURRENT == 3 )); then
+                _git_branch_names
+            fi
+            _arguments \
+                '-b[ベースブランチ]:branch:_git_branch_names' \
+                '--base[ベースブランチ]:branch:_git_branch_names' \
+                '-o[VSCode/Cursorで開く]' \
+                '--open[VSCode/Cursorで開く]' \
+                '-s[環境セットアップを実行]' \
+                '--setup[環境セットアップを実行]'
+            ;;
+        list|ls)
+            _arguments \
+                '-j[JSON形式で出力]' \
+                '--json[JSON形式で出力]' \
+                '--fzf[fzfで選択]' \
+                '--filter[フィルタ]:keyword:' \
+                '--sort[ソート]:field:(branch age size)' \
+                '--last-commit[最終コミット情報を表示]'
+            ;;
+        shell|sh|exec|e|delete|rm)
+            if (( CURRENT == 3 )); then
+                local worktrees
+                worktrees=($(git worktree list --porcelain 2>/dev/null | grep "^branch" | sed 's/^branch refs\/heads\///' | tr '\n' ' '))
+                _values 'worktrees' $worktrees
+            fi
+            ;;
+        github|gh)
+            if (( CURRENT == 3 )); then
+                _values 'type' 'checkout' 'pr' 'issue'
+            fi
+            _arguments \
+                '-o[VSCode/Cursorで開く]' \
+                '--open[VSCode/Cursorで開く]' \
+                '-s[環境セットアップを実行]' \
+                '--setup[環境セットアップを実行]'
+            ;;
+        config)
+            if (( CURRENT == 3 )); then
+                _values 'action' 'init' 'show' 'path'
+            fi
+            _arguments \
+                '-g[グローバル設定を対象にする]' \
+                '--global[グローバル設定を対象にする]'
+            ;;
+        mcp)
+            if (( CURRENT == 3 )); then
+                _values 'subcommand' 'serve'
+            fi
+            ;;
+        completion)
+            if (( CURRENT == 3 )); then
+                _values 'shell' 'bash' 'zsh' 'fish'
+            fi
+            ;;
+        tmux|t)
+            _arguments \
+                '-n[新しいウィンドウで開く]' \
+                '--new-window[新しいウィンドウで開く]' \
+                '-p[現在のペインを分割して開く]' \
+                '--split-pane[現在のペインを分割して開く]' \
+                '-v[垂直分割]' \
+                '--vertical[垂直分割]'
+            ;;
+        where|w)
+            if (( CURRENT == 3 )); then
+                local worktrees
+                worktrees=($(git worktree list --porcelain 2>/dev/null | grep "^branch" | sed 's/^branch refs\/heads\///' | tr '\n' ' '))
+                _values 'worktrees' $worktrees
+            fi
+            _arguments \
+                '--fzf[fzfで選択]' \
+                '--current[現在のworktreeのパスを表示]'
+            ;;
+    esac
+}
+
+_maestro "$@"
