@@ -3,3 +3,7 @@
 
 # Homebrew
 *.bottle.*
+
+# tmux log files
+tmux-*.log
+*.tmux.log
