@@ -1,8 +1,8 @@
 class Maestro < Formula
   desc "Orchestrate parallel development with Git Worktrees - supercharge your workflow with Claude Code integration"
   homepage "https://github.com/hashiramaendure/maestro"
-  url "https://registry.npmjs.org/@hashiramaendure/maestro/-/maestro-2.0.1.tgz"
-  sha256 "19e0d78861f8e14848754d3f91b13a90d7f3874b4a87e7459783782cc3946d04"
+  url "https://registry.npmjs.org/@hashiramaendure/maestro/-/maestro-2.0.2.tgz"
+  sha256 "019de1877ef9718d1c865f4018be7dde67978576febc74e07c66f5377a3e5371"
   license "MIT"
 
   depends_on "node"
