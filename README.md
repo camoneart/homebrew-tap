@@ -1,29 +1,29 @@
-# hashiramaendure Homebrew Tap
+# camoneart Homebrew Tap
 
 [![Homebrew](https://img.shields.io/badge/Homebrew-Tap-orange?style=flat-square)](https://brew.sh)
 [![License MIT](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](https://opensource.org/licenses/MIT)
 
-This tap provides Homebrew formulae for tools developed by hashiramaendure.
+This tap provides Homebrew formulae for tools developed by camoneart.
 
 **English** | **[日本語](/README.ja.md)**
 
 ## How do I install these formulae?
 
 ```bash
-brew install hashiramaendure/tap/maestro
+brew install camoneart/tap/maestro
 ```
 
 Or tap the repository first:
 
 ```bash
-brew tap hashiramaendure/tap
-brew install hashiramaendure/tap/maestro
+brew tap camoneart/tap
+brew install camoneart/tap/maestro
 ```
 
 Or install via URL (which will not receive updates):
 
 ```bash
-brew install https://raw.githubusercontent.com/hashiramaendure/homebrew-tap/main/Formula/maestro.rb
+brew install https://raw.githubusercontent.com/camoneart/homebrew-tap/main/Formula/maestro.rb
 ```
 
 ## Available Formulae
@@ -37,10 +37,10 @@ A CLI tool that "conducts" Git Worktrees like an orchestra and turbo-charges par
 - **GitHub Integration**: Create worktrees directly from Issues/PRs
 - **tmux/fzf Support**: Lightning-fast switching between worktrees
 
-For more details, see the [Maestro repository](https://github.com/hashiramaendure/maestro).
+For more details, see the [Maestro repository](https://github.com/camoneart/maestro).
 
 ```bash
-brew install hashiramaendure/tap/maestro
+brew install camoneart/tap/maestro
 ```
 
 ## Troubleshooting
@@ -57,4 +57,4 @@ For formula-specific issues, please open an issue in this repository.
 
 - Formula documentation: `brew help`, `man brew`
 - Homebrew documentation: [docs.brew.sh](https://docs.brew.sh)
-- Maestro documentation: [github.com/hashiramaendure/maestro](https://github.com/hashiramaendure/maestro)
+- Maestro documentation: [github.com/camoneart/maestro](https://github.com/camoneart/maestro)

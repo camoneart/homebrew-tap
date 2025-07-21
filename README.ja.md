@@ -1,29 +1,29 @@
-# hashiramaendure Homebrew Tap
+# camoneart Homebrew Tap
 
 [![Homebrew](https://img.shields.io/badge/Homebrew-Tap-orange?style=flat-square)](https://brew.sh)
 [![License MIT](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](https://opensource.org/licenses/MIT)
 
-hashiramaendureが開発したツールのHomebrewフォーミュラを提供するtapです。
+camoneartが開発したツールのHomebrewフォーミュラを提供するtapです。
 
 **[English](/README.md)** | **日本語**
 
 ## インストール方法
 
 ```bash
-brew install hashiramaendure/tap/maestro
+brew install camoneart/tap/maestro
 ```
 
 または先にリポジトリをtap：
 
 ```bash
-brew tap hashiramaendure/tap
-brew install hashiramaendure/tap/maestro
+brew tap camoneart/tap
+brew install camoneart/tap/maestro
 ```
 
 またはURL経由でインストール（更新を受け取れません）：
 
 ```bash
-brew install https://raw.githubusercontent.com/hashiramaendure/homebrew-tap/main/Formula/maestro.rb
+brew install https://raw.githubusercontent.com/camoneart/homebrew-tap/main/Formula/maestro.rb
 ```
 
 ## 利用可能なFormulae
@@ -37,10 +37,10 @@ Git Worktreeをオーケストラのように「指揮」し、Claude Codeとの
 - **GitHub連携**: Issue/PRから直接worktreeを作成
 - **tmux/fzfサポート**: 高速なworktree切り替え
 
-詳細は[Maestroリポジトリ](https://github.com/hashiramaendure/maestro)をご覧ください。
+詳細は[Maestroリポジトリ](https://github.com/camoneart/maestro)をご覧ください。
 
 ```bash
-brew install hashiramaendure/tap/maestro
+brew install camoneart/tap/maestro
 ```
 
 ## トラブルシューティング
@@ -57,4 +57,4 @@ brew install hashiramaendure/tap/maestro
 
 - Formulaドキュメント: `brew help`, `man brew`
 - Homebrewドキュメント: [docs.brew.sh](https://docs.brew.sh)
-- Maestroドキュメント: [github.com/hashiramaendure/maestro](https://github.com/hashiramaendure/maestro)
+- Maestroドキュメント: [github.com/camoneart/maestro](https://github.com/camoneart/maestro)
